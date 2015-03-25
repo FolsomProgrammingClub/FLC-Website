@@ -119,6 +119,14 @@ h1 {
     text-align: center;
 }
 
+#lionelsbody {
+     background-image: url(http://fullhdwp.com/images/wallpapers/Kallen_and_Lelouch-wallpaper.jpg);
+}
+
+body > * {
+    opacity: .8;
+}
+
 
 
 
