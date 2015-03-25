@@ -50,12 +50,14 @@ table {
 	border-spacing: 0;
 }
 /**********Normal CSS********************/
-
 body{
-    background-image: url('matrixk.gif');
+    background-image: url(http://fullhdwp.com/images/wallpapers/Kallen_and_Lelouch-wallpaper.jpg);
     padding: 0 170px;
     position: relative;
     min-height: 100%;
+}
+body * {
+    opacity: .8;
 }
 
 header {
@@ -75,6 +77,7 @@ nav {
     background-color: black;
     padding: 20px;
 }
+
 nav a {
     color: white;
     font-size: 2em;
@@ -92,11 +95,11 @@ nav a:hover {
 
 footer {
     background-color: black;
-    position: absolute;
     bottom: 0;
-    width: 1200px;
+    max-width: 1200px;
     text-align: center;
     padding: 20px;
+    margin: 0 auto;
 }
 footer p {
     color: white;
@@ -107,29 +110,17 @@ footer p {
     color: white;
     margin-bottom: 50px;
 }
+h1 {
+    font-size: 3em;
+    text-align: center;
+    text-decoration: underline;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.roster {
+    color: white;
+    font-size: 2em;
+    text-align: center;
+}
 
 
 
