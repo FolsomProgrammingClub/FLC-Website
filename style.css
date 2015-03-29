@@ -93,7 +93,7 @@ nav a:hover {
 footer {
     background-color: black;
     bottom: 0;
-    max-width: 1200px;
+    max-width: 1160px;
     text-align: center;
     padding: 20px;
     margin: 0 auto;
@@ -106,6 +106,12 @@ footer p {
     opacity: 0.8;
     color: white;
     margin-bottom: 50px;
+    width: auto;
+    margin-top: 50px;
+    max-width: 1160px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 20px;
 }
 h1 {
     font-size: 3em;
@@ -127,7 +133,12 @@ body > * {
     opacity: .8;
 }
 
-
+#will_s-body {
+    background-image: url(http://i.imgur.com/7jWBoem.jpg);
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 
 
