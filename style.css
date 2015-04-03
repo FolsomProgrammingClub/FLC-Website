@@ -1,41 +1,165 @@
 @charset "utf-8";
 /* CSS Document */
-* {
-	margin: 0px;
-	padding: 0px;
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/**********Normal CSS********************/
+
+body{
+    background-image: url("matrixk.gif");
+    padding: 0 170px;
+    position: relative;
+    min-height: 100%;
 }
 
-#content {
-}
-#wrapper {
-	width: 1000px;
-	min-height: 600px;
-	margin-left: auto;
-	display: block;
-	margin-right: auto;
-}
 header {
-	width: auto;
-	background-color: #094ED8;
-	height: 100px;
+    width: auto;
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 10px;
+}
+header img {
+    width: 100%;
+    max-width: 1200px;
+    height: 250px;
+}
+nav {
+    text-align: center;
+    background-color: black;
+    padding: 20px;
+}
+nav a {
+    color: white;
+    font-size: 2em;
+    padding: 0 15px;
+    border-right: 1px white solid;
+    transition: all 1s;
+}
+nav a:last-child {
+    border: none;
+}
+nav a:hover {
+    background-color: white;
+    color: black;
 }
 
-#nav {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 500px;
-	height: 50px;
-	padding-top: 20px;
+footer {
+    background-color: black;
+    bottom: 0;
+    max-width: 1160px;
+    text-align: center;
+    padding: 20px;
+    margin: 0 auto;
+}
+footer p {
+    color: white;
+}
+#content {
+    background-color: black;
+    opacity: 0.8;
+    color: white;
+    margin-bottom: 50px;
+    width: auto;
+    margin-top: 50px;
+    max-width: 1160px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 20px;
+}
+h1 {
+    font-size: 3em;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.roster {
+    color: white;
+    font-size: 2em;
+    text-align: center;
+}
+
+#lionelsbody {
+     background-image: url(http://fullhdwp.com/images/wallpapers/Kallen_and_Lelouch-wallpaper.jpg);
+}
+
+body > * {
+    opacity: .8;
+}
+
+#will_s-body {
+    background-image: url(http://i.imgur.com/7jWBoem.jpg);
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 
-}
-ul.nav>li {
-	display: inline;
-	padding-top: 20px;
-	padding-right: 20px;
-	padding-bottom: 20px;
-	padding-left: 24px;
-	margin-top: auto;
-	margin-bottom: auto;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
