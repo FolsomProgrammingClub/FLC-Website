@@ -1,0 +1,163 @@
+@charset "utf-8";
+/* CSS Document */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Regular CSS */
+
+#wrapper {
+	margin-left: auto;
+	margin-right: auto;
+	width: 1030px;
+	border: 5px solid #FF0004;
+}
+
+header {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: -40px;
+	margin-bottom: -25px;
+}
+
+nav {
+	margin-bottom: 0;
+	border: 5px dotted #0005F8;
+	width: 1020px;
+}
+
+ul {
+	width: 1010px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 5px;
+}
+
+nav a {
+	display: inline-block;
+	background-color: #40829C;
+	border-style: solid;
+	border-width: 3px 2px 2px;
+	border-color: #40829C #41809F #40829C #3F819B;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	transition: background .75s;
+	text-decoration: none;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+	font-weight: bolder;
+	font-size: 25px;
+	font-style: normal;
+	font-variant: small-caps;
+	letter-spacing: 4px;
+	text-align: center;
+	min-width: 200px;
+	margin-left: 1px;
+}
+nav a:hover {
+	background-color: white;
+	color: #40829C;	
+}
+
+nav a:active {
+	background-color: #40829C;
+	color: white;
+	transition: none;
+}
+
+
+nav a li {
+	padding-left: 2px;
+	padding-right: 2px;
+	height: 45px;
+	padding-top: 20px;
+}
+
+.onPage {
+	background-color: white;
+	border-style: solid solid solid solid;
+	border-width: 3px 2px 2px;
+	border-color: #40829C;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	text-align: center;
+	text-decoration: none;
+	color: #40829C;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+	font-weight: bolder;
+	font-size: 25px;
+	font-style: normal;
+	font-variant: small-caps;
+	line-height: px;
+	text-shadow: 0px 0px;
+	letter-spacing: 4px;
+}
+
+
+#content {
+	display: block;
+	border: 5px dashed #098000;
+	min-height: 94px;
+	width: 1020px;
+}
+
+footer {
+	display: block;
+	width: 1020px;
+	border: 5px dotted #DC7B00;
+	min-height: 50px;
+}
+
+h1 {
+	color: #40829C;
+	font-family: Constantia, "Lucida Bright", "DejaVu Serif", Georgia, serif;
+	font-variant: small-caps;
+	font-weight: bolder;
+	font-size: 3em;
+	line-height: 1.5em;
+	text-indent: 15px;
+	border-bottom: 7px groove #448196;
+}
