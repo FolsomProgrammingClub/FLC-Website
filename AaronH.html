@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<style>
+body {
+    background-color: #FAFBFA;
+    font-size: 18px;
+    margin: 40px;
+    max-width: 650px;
+    color: #222;
+    line-height: 1.6;
+    padding: 00px;
+}
+h3 {
+    text-align: center;
+}
+ul a:link {
+    padding: 2px 8px;
+    color: #fff;
+    background-color: #888;
+    border: 1px solid black;
+    border-radius: 4px;
+    line-height: 200%;
+    text-decoration: none;
+}
+ul a:hover {
+    background-color: #555;
+}
+ul a:active {
+    background-color: #000;
+}
+</style>
+<title >Aaron Hartigan - About Me</title>
+    
+</head>
+<body>
+    
+<div id="wrapper">
+    <h3>Hello! My name is Aaron Hartigan.</h3>
+    <nav>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="http:www.reddit.com" target=
+"_blank">Study Time</a></li>
+            <li><a href="http:www.twitch.com" target=
+"_blank">Epic Gaming</a></li>
+            <li><a href="https://github.com/docallens" target=
+"_blank">My Github</a></li>
+        </ul>
+    </nav>
+    <div id="content">
+        <p>I don't have much to say.  I went through 
+        the w3school tutorials to learn html and CSS.</p>
+        <p>Here is a button that gives a number between 1 and 10.</p>
+        <button type="button" onclick="randomNumber()">Click!</button>
+
+        <p>Result: <text id="random"></text></p>
+        <p>Click count: <text id="counter"></text></p>
+    </div>
+<br>
+<hr>
+    <div id="footer">
+        This is a footer, and I want one.
+    </div>
+
+<script>
+var x = 0;
+var rand = document.getElementById("random");
+var count = document.getElementById("counter");
+function randomNumber() {
+    rand.innerHTML = Math.ceil(10 * Math.random());
+    x++;
+    count.innerHTML = x;
+}
+</script>
+
+</div>
+</body>
+</html>
