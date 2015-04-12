@@ -19,11 +19,6 @@ body {
     line-height: 1.6;
     font-family: Roboto,Helvetica,Arial,sans-serif;
 }
-
-div {
-    //border: 1px solid black;
-}
-
 div.wrapper {
     min-width: 540px;
     margin: auto;
@@ -60,7 +55,7 @@ ul a:active {
 }
 #container {
     height: 150px;
-    margin-top: 20px;
+    margin-top: 45px;
     margin-bottom: 20px;
 }
 #histogram {
@@ -69,39 +64,47 @@ ul a:active {
     width: 340px;
 }
 .bars li {
-list-style-type:none
+    list-style-type:none
 }
 .bars {
     width: 100%;
-    height: 120px;
-    position: relative;
+    height: 80%;
     background-color: #eee;
-    float: left;
     box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.25);
 }
 .bars div {
-    display:inline-block;
     position: absolute;
-    bottom: 0; left: 0; right: 0;
+    bottom: 0;
     transition: all 0.2s ease;
     box-shadow:1px 1px 1px 1px rgba(0, 0, 0, 1) inset, -1px 1px 1px 1px rgba(0, 0, 0, 1) inset;
     background: #337AB7;
-    visibility: hidden;
-    float: left;
     height: 0%;
+    width: 100%;
 }
 .bars li {
     width: 9.5%;
     height: 100%;
-    margin-left: 0.25%; margin-right: 0.25%;
+    margin-left: 0.25%;
+    margin-right: 0.25%;
     float: left;
     position: relative;
 }
 .bars div:hover {
-    box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 1) inset;
-    box-shadow: 0px 0px 3px 1px rgba(0, 0, 204, 1);
-    background: #337AD9;
+    box-shadow:1px 1px 1px 1px rgba(0, 0, 0, 1) inset, -1px 1px 1px 1px rgba(0, 0, 0, 1) inset, 0px -1px 3px 0px rgba(0, 0, 66, 0.8);
+    background: #447AEA;
     transition: all 0.1s ease 0s;
+}
+.bars div:hover:after {
+    position: relative;
+    top: -35px;
+    background-color: rgba(51, 51, 51, .8);
+    box-shadow:0px 0px 4px 0px rgba(0, 0, 0, 0.5), 0px 0px 0px 1px rgba(0, 0, 0, 0.8) inset;
+    border-radius: 4px;
+    color: #fff;
+    content: attr(count);
+    z-index: 2;
+    width: 100%;
+    text-align: center;
 }
 div.histoText {
     border-top: 1px solid black;
@@ -113,7 +116,6 @@ div.histoText span{
     display: table-cell;
     text-align: center;
 }
-
 #results {
     display: flex;
     justify-content: center;
@@ -155,6 +157,7 @@ div.histoText span{
     </nav>
         <p>I don't have much to say.  I went through 
         the w3school tutorials to learn html and CSS.</p>
+        <br>
         <p>Here is a button that gives a number between 1 and 10.</p>
 
         <div class="button">
@@ -170,16 +173,16 @@ div.histoText span{
 
             <div id="histogram">
                 <div class="bars"> 
-                    <li><div id="bar1" title="0"></div></li>
-                    <li><div id="bar2" title="0"></div></li>
-                    <li><div id="bar3" title="0"></div></li>
-                    <li><div id="bar4" title="0"></div></li>
-                    <li><div id="bar5" title="0"></div></li>
-                    <li><div id="bar6" title="0"></div></li>
-                    <li><div id="bar7" title="0"></div></li>
-                    <li><div id="bar8" title="0"></div></li>
-                    <li><div id="bar9" title="0"></div></li>
-                    <li><div id="bar10"title="0"></div></li>
+                    <li><div id="bar1" count="0"></div></li>
+                    <li><div id="bar2" count="0"></div></li>
+                    <li><div id="bar3" count="0"></div></li>
+                    <li><div id="bar4" count="0"></div></li>
+                    <li><div id="bar5" count="0"></div></li>
+                    <li><div id="bar6" count="0"></div></li>
+                    <li><div id="bar7" count="0"></div></li>
+                    <li><div id="bar8" count="0"></div></li>
+                    <li><div id="bar9" count="0"></div></li>
+                    <li><div id="bar10"count="0"></div></li>
                 </div>
                 <div class="histoText">
                     <span>1</span>
@@ -218,13 +221,15 @@ function randomNumber() {
     barID[randNum].style.visibility = "initial";
     rand.innerHTML = randNum + 1;
     numCount[randNum] += 1;
-    barID[randNum].title = numCount[randNum];
+    barID[randNum].setAttribute('count', numCount[randNum]);
     total++;
     count.innerHTML = total;
     for (i=0; i < 10; i++) {
         if (numCount[i] > largest) {
             largest = numCount[i];
         }
+    }
+    for (i=0; i < 10; i++) {
         barHeight[i] = (numCount[i]/largest) * 100;
         barHeight[i] = Math.floor(barHeight[i]);
     }
@@ -242,7 +247,7 @@ function reset() {
     count.innerHTML = "0";
     rand.innerHTML = "0";
     for (i=0; i < 10; i++) {
-        barID[i].style.height = barHeight[i];
+        barID[i].style.height = "0%";
     }
 }
 </script>
