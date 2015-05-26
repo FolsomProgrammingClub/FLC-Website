@@ -9,8 +9,8 @@ body {
       -45deg,
       #eee,
       #eee 5px,
-      #dfdfdf 5px,
-      #dfdfdf 10px
+      #eaeaea 5px,
+      #eaeaea 10px
     );
     background-color: #EEE;
     font-size: 18px;
@@ -18,6 +18,9 @@ body {
     color: #222;
     line-height: 1.6;
     font-family: Roboto,Helvetica,Arial,sans-serif;
+}
+div {
+	//box-shadow: 0px 0px 1px red inset;
 }
 div.wrapper {
     min-width: 540px;
@@ -133,7 +136,80 @@ div.histoText span{
     font-size: 16px;
     padding: 2px 6px;
     margin-left: 20px;
-    margin-right: 20px; 
+    margin-right: 20px;
+}
+#snake {
+	line-height: 1;
+	background-color: #fafafa;
+	font-family: Courier New, Ubuntu Mono, Monaco,monospace;
+	text-align: center;
+    width: 540px;
+	height: 270px;
+	margin-left: auto;
+	margin-right: auto;
+	box-shadow:0px 0px 4px 0px rgba(0, 0, 0, 0.5), 0px 0px 0px 1px rgba(0, 0, 0, 0.8)inset;
+}
+#gametext {
+	visibility: hidden;
+	line-height: 0;
+	font-family: Lucida Console, Monaco, monospace;
+}
+#scoreheader {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+#scoreheader span{
+    display: table-cell;
+    text-align: center;
+}
+.slider {
+	width: 281px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	border: 1px solid black;
+	height: 36px;
+	width: 16px;
+	border-radius: 3px;
+	background: white;
+	cursor: pointer;
+	margin-top: -14px;
+	box-shadow: 1px 1px 1px black, 0px 0px 1px #0d0d0d;
+}
+input[type=range]::-webkit-slider-runnable-track {
+	width: 100%;
+	height: 8.4px;
+	cursor: auto;
+	box-shadow: 1px 1px 1px black, 0px 0px 1px #0d0d0d;
+	background-color: #337AB7;
+	border-radius: 1.3px;
+	border: 0.2px solid #010101;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+	background: #337AB7;
+}
+input[type=range]::-moz-range-track {
+	width: 100%;
+	height: 8.4px;
+	cursor: auto;
+	box-shadow: 1px 1px 1px black, 0px 0px 1px #0d0d0d;
+	background-color: #337AB7;
+	border-radius: 1.3px;
+	border: 0.2px solid #010101;
+}
+
+input[type=range]::-moz-range-thumb {
+	border: 1px solid black;
+	height: 36px;
+	width: 16px;
+	border-radius: 3px;
+	background: white;
+	cursor: pointer;
+	box-shadow: 1px 1px 1px black, 0px 0px 1px #0d0d0d;
 }
 
 </style>
@@ -200,6 +276,25 @@ div.histoText span{
             </div>
         </div>
         <br>
+		<p> Here is the game of Snake! Press the button to start. </p>
+		<div class="button">
+			<button type="button" class="button" onclick="startGame()">Start Game</button>
+		</div>
+		<p id="scoreheader"> 
+			<span>Score: <text id="score">0</text></span>
+			<span><text id="gametext">Game Over</text></span>
+			<span>Highscore: <text id="highscore">0</text></span>
+		</p>
+		<pre><div id="snake"></div></pre>
+		<div class="slider">
+			Slow <input id="slide" type="range" min=".5" max="1"
+			step=".1" value="1"/>
+			Fast
+		</div>
+		<br>
+		<p> Use <b>WSAD</b> or the <b>arrow keys</b> to move the snake.  Avoid the edges and your own tail. </p>
+		<br>
+		<br>
         <hr>
         <div id="footer">
             This is a footer, and I want one.
@@ -215,8 +310,13 @@ var numCount = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var randNum = 0;
 var rand = document.getElementById("random");
 var count = document.getElementById("counter");
+var snake = document.getElementById("snake");
+var score = document.getElementById("score");
+var highscore = document.getElementById("highscore");
+var gametext = document.getElementById("gametext");
 var barHeight = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var barID = [document.getElementById("bar1"), document.getElementById("bar2"), document.getElementById("bar3"), document.getElementById("bar4"), document.getElementById("bar5"), document.getElementById("bar6"), document.getElementById("bar7"), document.getElementById("bar8"), document.getElementById("bar9"), document.getElementById("bar10")]; 
+
 function randomNumber() {
     randNum = Math.floor(10 * Math.random());
     barID[randNum].style.visibility = "initial";
@@ -251,7 +351,159 @@ function reset() {
         barID[i].style.height = "0%";
     }
 }
+var gameBoard = 
+['#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','\n',
+ '#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','\n',
+ '#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','\n',
+ '#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','\n',
+ '#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','\n',
+ '#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','\n',
+ '#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','\n',
+ '#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','\n',
+ '#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','\n',
+ '#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','\n',
+ '#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','\n',
+ '#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','\n',
+ '#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','\n',
+ '#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','\n',
+'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'
+];
+var randSpace;
+var NORTH = -50;
+var WEST = -1;
+var SOUTH = 50;
+var EAST = 1;
+var DELAY_BASE = 50;
+var delay_SF = 1;
+var delay = DELAY_BASE * delay_SF;
+var direction = EAST;
+var highscoreNum = 0;
+var length = 0;
+var snakeHead = 208;
+var snakeBody = [];
+var snakeBodyLast;
+var snakeBodyDirection = [];
+var eat = 0;
+var boardString;
+var HEAD = '@';
+var TAIL = '+';
+var FRUIT = 'X';
+var first = 0;
+var gameEnd = 0;
+var playGame = 0;
+
+function turn() {
+	//shift body parts forward
+	for (i = length; i > 0; i--) {
+		snakeBody[i] = snakeBody[i - 1];
+	}
+	snakeBody[0] = snakeHead;
+	snakeBodyLast = snakeBody[length];
+	
+	if (first) {
+		first = 0;
+		gameBoard[randSpace] = ' ';
+		do {
+			randSpace = Math.floor(700 * Math.random());
+		} while  ( gameBoard[randSpace] == '#' || gameBoard[randSpace] == '\n' || gameBoard[randSpace] == HEAD || gameBoard[randSpace] == TAIL);
+	}
+	if (gameBoard[snakeHead + direction] == FRUIT) {
+		eat = 1;
+	}
+	if ( (gameBoard[snakeHead + direction] == '#') || (gameBoard[snakeHead + direction] == TAIL) ) {
+		gameOver();
+		gameEnd = 1;
+	}
+	else {
+		snakeHead += direction;
+	}
+
+	//copy snake body to game board
+	gameBoard[snakeBodyLast] = ' ';
+	for (i = 0; i < length; i++) {
+		gameBoard[snakeBody[i]] = TAIL;
+	}
+	gameBoard[snakeHead] = HEAD;
+
+	if ( eat == 1 ) {
+		length++;
+		score.innerHTML = length;
+		eat = 0;
+		do {
+			randSpace = Math.floor(700 * Math.random());
+		} while  ( gameBoard[randSpace] == '#' || gameBoard[randSpace] == '\n' || gameBoard[randSpace] == HEAD || gameBoard[randSpace] == TAIL);
+	}
+	gameBoard[randSpace] = FRUIT;
+	boardString = gameBoard.join('');
+	snake.innerHTML = boardString;
+}
+var start;
+setTimeout(turn, 1);
+function startGame() {
+	delay_SF = 1 / (document.getElementById("slide").value);
+	delay = DELAY_BASE * delay_SF;
+	resetBoard();
+	clearInterval(start);
+	playGame = 1;
+	start = setInterval(turn, delay);
+}
+function gameOver() {
+	clearInterval(start);
+	snakeBodyLast = snakeHead; //prevents the last chain of the snake from disappearing
+	if (length > highscoreNum) {
+		highscoreNum = length;
+	}
+	highscore.innerHTML = highscoreNum;
+	gametext.style.visibility = "visible";
+}
+
+function resetBoard() {
+	direction = EAST;
+	gameEnd = 0;
+	first = 1;
+	for (i = 0; i <= length; i++) {
+		gameBoard[snakeBody[i]] = ' ';
+	}
+	gameBoard[snakeHead] = ' ';
+	snakeHead = 208;
+	length = 0;
+	score.innerHTML = length;
+	gametext.style.visibility = "hidden";
+}
+
+document.addEventListener('keydown', function(event) {
+    if(event.keyCode == 87 || event.keyCode == 38) {
+		if (direction != SOUTH) {
+			event.preventDefault();
+			direction = NORTH;
+			delay = DELAY_BASE * delay_SF * 1.5;
+		}
+    }
+    else if(event.keyCode == 65 || event.keyCode == 37) {
+		if (direction != EAST) {
+			event.preventDefault();
+			direction = WEST;
+			delay = DELAY_BASE * delay_SF;
+		}
+    }
+    else if(event.keyCode == 83 || event.keyCode == 40) {
+		if (direction != NORTH) {
+			event.preventDefault();
+			direction = SOUTH;
+			delay = DELAY_BASE * delay_SF * 1.5;
+		}
+    }
+    else if(event.keyCode == 68 || event.keyCode == 39) {
+		if (direction != WEST) {
+			event.preventDefault();
+			direction = EAST;
+			delay = DELAY_BASE * delay_SF;
+		}
+    }
+});
+
 </script>
 
 </body>
 </html>
+
