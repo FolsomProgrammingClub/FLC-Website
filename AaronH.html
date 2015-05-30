@@ -4,20 +4,29 @@
 <head>
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 <style>
+html {
+    overflow-y: scroll;
+}
 body {
-    background: repeating-linear-gradient(
+    /*background: repeating-linear-gradient(
       -45deg,
       #eee,
       #eee 5px,
       #eaeaea 5px,
       #eaeaea 10px
-    );
+    );*/
     background-color: #EEE;
     font-size: 18px;
     margin: 40px;
     color: #222;
     line-height: 1.6;
     font-family: Roboto,Helvetica,Arial,sans-serif;
+}
+#footer {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 12px;
+	color: #666;
 }
 div {
 	//box-shadow: 0px 0px 1px red inset;
@@ -29,7 +38,7 @@ div.wrapper {
     background-color: #FFF;
     padding: 40px;
     border-radius: 3px;
-    box-shadow: 0px 8px 17px 0px rgba(0, 0, 0, 0.25), 0px 6px 20px 0px rgba(0, 0, 0, 0.25)
+    box-shadow: 0px 8px 17px 0px rgba(0, 0, 0, 0.25), 0px 6px 20px 0px rgba(0, 0, 0, 0.25), 0px 0px 0px 1px rgba(0, 0, 0, 0.4) inset;
 }
 h1, h2, h3 {
     text-align: center;
@@ -58,11 +67,10 @@ ul a:active {
 }
 #container {
     height: 150px;
-    margin-top: 45px;
-    margin-bottom: 20px;
+    margin-top: 40px;
 }
 #histogram {
-    height: 150px;
+    height: 100%;
     float: right;
     width: 340px;
 }
@@ -138,6 +146,27 @@ div.histoText span{
     margin-left: 20px;
     margin-right: 20px;
 }
+#graphwrapper {
+    overflow: hidden;
+    transition: all 0.4s ease;
+	padding: 0px 0px 0px 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	opacity: 0;
+	max-height: 0;
+	display: block;
+}
+
+#snakewrapper {
+    overflow: hidden;
+    transition: all 0.4s ease;
+	padding: 0px 0px 0px 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	opacity: 0;
+	max-height: 0;
+	display: block;
+}
 #snake {
 	line-height: 1;
 	background-color: #fafafa;
@@ -164,7 +193,7 @@ div.histoText span{
     text-align: center;
 }
 .slider {
-	width: 281px;
+	width: 290px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -177,7 +206,7 @@ input[type=range]::-webkit-slider-thumb {
 	border-radius: 3px;
 	background: white;
 	cursor: pointer;
-	margin-top: -14px;
+	margin-top: -8px;
 	box-shadow: 1px 1px 1px black, 0px 0px 1px #0d0d0d;
 }
 input[type=range]::-webkit-slider-runnable-track {
@@ -221,88 +250,111 @@ input[type=range]::-moz-range-thumb {
 <div class="wrapper">
     <div id="content">
     <h3>Hello! My name is Aaron Hartigan.</h3>
+	<p>Here are some useful links!</p>
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="http://reddit.com" target=
-"_blank">Study Time</a></li>
-            <li><a href="http://twitch.com" target=
-"_blank">Epic Gaming</a></li>
-            <li><a href="https://github.com/docallens" target=
-"_blank">My Github</a></li>
+            <li><a href="http://reddit.com" target="_blank">Study Time</a></li>
+            <li><a href="http://twitch.com" target="_blank">Epic Gaming</a></li>
+            <li><a href="https://github.com/docallens" target="_blank">My Github</a></li>
         </ul>
     </nav>
         <p>I don't have much to say.  I went through 
         the w3school tutorials to learn html and CSS.</p>
-        <br>
-        <p>Here is a button that gives a number between 1 and 10.</p>
-
-        <div class="button">
-            <button type="button" class="button" onclick="randomNumber()">Click!</button>
-            <button type="button" class="button" onclick="reset()">Reset</button>
-        </div>
-
-        <div id="container">
-            <div id="results">
-                <p>Result: <text id="random">0</text></p>
-                <p>Click count: <text id="counter">0</text></p>
-            </div>
-
-            <div id="histogram">
-                <div class="bars"> 
-                    <li><div id="bar1" count="0"></div></li>
-                    <li><div id="bar2" count="0"></div></li>
-                    <li><div id="bar3" count="0"></div></li>
-                    <li><div id="bar4" count="0"></div></li>
-                    <li><div id="bar5" count="0"></div></li>
-                    <li><div id="bar6" count="0"></div></li>
-                    <li><div id="bar7" count="0"></div></li>
-                    <li><div id="bar8" count="0"></div></li>
-                    <li><div id="bar9" count="0"></div></li>
-                    <li><div id="bar10"count="0"></div></li>
-                </div>
-                <div class="histoText">
-                    <span>1</span>
-                    <span>2</span>
-                    <span>3</span>
-                    <span>4</span>
-                    <span>5</span>
-                    <span>6</span>
-                    <span>7</span>
-                    <span>8</span>
-                    <span>9</span>
-                    <span>10</span>
-                </div>
-            </div>
-        </div>
-        <br>
-		<p> Here is the game of Snake! Press the button to start. </p>
+		<p>Below are some projects I have made.  Click the buttons to toggle them into view. </p>
 		<div class="button">
-			<button type="button" class="button" onclick="startGame()">Start Game</button>
+			<button type="button" class="button" onclick="toggle_show('graphwrapper')">Show Graph</button>
+			<button type="button" class="button" onclick="toggle_show('snakewrapper')">Play Snake</button>
 		</div>
-		<p id="scoreheader"> 
-			<span>Score: <text id="score">0</text></span>
-			<span><text id="gametext">Game Over</text></span>
-			<span>Highscore: <text id="highscore">0</text></span>
-		</p>
-		<pre><div id="snake"></div></pre>
-		<div class="slider">
-			Slow <input id="slide" type="range" min=".5" max="1"
-			step=".1" value="1"/>
-			Fast
+
+		<div actualHeight="300" id="graphwrapper">
+		    <p>Here is a button that gives a number between 1 and 10.</p>
+
+		    <div class="button">
+		        <button type="button" class="button" onclick="randomNumber()">Click!</button>
+		        <button type="button" class="button" onclick="reset()">Reset</button>
+		    </div>
+
+		    <div id="container">
+		        <div id="results">
+		            <p>Result: <text id="random">0</text></p>
+		            <p>Click count: <text id="counter">0</text></p>
+		        </div>
+
+		        <div id="histogram">
+		            <div class="bars"> 
+		                <li><div id="bar1" count="0"></div></li>
+		                <li><div id="bar2" count="0"></div></li>
+		                <li><div id="bar3" count="0"></div></li>
+		                <li><div id="bar4" count="0"></div></li>
+		                <li><div id="bar5" count="0"></div></li>
+		                <li><div id="bar6" count="0"></div></li>
+		                <li><div id="bar7" count="0"></div></li>
+		                <li><div id="bar8" count="0"></div></li>
+		                <li><div id="bar9" count="0"></div></li>
+		                <li><div id="bar10"count="0"></div></li>
+		            </div>
+		            <div class="histoText">
+		                <span>1</span>
+		                <span>2</span>
+		                <span>3</span>
+		                <span>4</span>
+		                <span>5</span>
+		                <span>6</span>
+		                <span>7</span>
+		                <span>8</span>
+		                <span>9</span>
+		                <span>10</span>
+		            </div>
+		        </div>
+		    </div>
 		</div>
-		<br>
-		<p> Use <b>WSAD</b> or the <b>arrow keys</b> to move the snake.  Avoid the edges and your own tail. </p>
-		<br>
-		<br>
-        <hr>
-        <div id="footer">
-            This is a footer, and I want one.
-        </div>
+		<div actualHeight="600" id="snakewrapper">
+			<p> Here is the game of Snake! Press the button (or the <b>spacebar</b>) to start. </p>
+			<div class="button">
+				<button type="button" class="button" onclick="manualPlay()">Start Game</button>
+				<button type="button" class="button" onclick="autoPlay()">Auto Play</button>
+			</div>
+			<p id="scoreheader"> 
+				<span>Score: <text id="score">0</text></span>
+				<span><text id="gametext">Game Over</text></span>
+				<span>Highscore: <text id="highscore">0</text></span>
+			</p>
+			<pre><div id="snake"></div></pre>
+			<div class="slider">
+				Slow <input id="slide" type="range" min=".4" max="1"
+				step=".12" value="1"/>
+				Fast
+			</div>
+			<p> Use <b>WSAD</b> or the <b>arrow keys</b> to move the snake.  Press the <b>spacebar</b> to pause/resume the game.</p>
+		</div>
     </div>
+</div>
+<div id="footer">
+	This is a footer, and I want one. &copy;2015 by Me.
 </div>
 
 <script>
+
+function toggle_show(id) {
+	var e = document.getElementById(id);
+	var height = e.getAttribute("actualHeight");
+	//the values can be messed with to make a smooth transition time
+	e.style.transitionDuration = height/1000 + .2 + "s";
+	height = height + "px";
+	//alert(e.style.transitionDuration);
+	//alert(e.clientHeight);
+	if (e.style.maxHeight == height) {
+		e.style.opacity = '0';
+    	e.style.maxHeight = '0px';
+	}
+	else {
+		e.style.opacity = '1';
+		e.style.maxHeight = height;
+	}
+		
+}
+
 var i = 0;
 var largest = 0;
 var total = 0;
@@ -368,13 +420,14 @@ var gameBoard =
  '#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','\n',
 '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'
 ];
-var randSpace;
+var fruitSpace;
 var NORTH = -50;
 var WEST = -1;
 var SOUTH = 50;
 var EAST = 1;
-var DELAY_BASE = 50;
+var DELAY_BASE = 40;
 var delay_SF = 1;
+var vertical_SF = 1.25;
 var delay = DELAY_BASE * delay_SF;
 var direction = EAST;
 var highscoreNum = 0;
@@ -382,128 +435,329 @@ var length = 0;
 var snakeHead = 208;
 var snakeBody = [];
 var snakeBodyLast;
-var snakeBodyDirection = [];
-var eat = 0;
 var boardString;
 var HEAD = '@';
 var TAIL = '+';
 var FRUIT = 'X';
 var first = 0;
-var gameEnd = 0;
+var endGame = 0;
 var playGame = 0;
-
-function turn() {
-	//shift body parts forward
-	for (i = length; i > 0; i--) {
-		snakeBody[i] = snakeBody[i - 1];
-	}
-	snakeBody[0] = snakeHead;
-	snakeBodyLast = snakeBody[length];
-	
-	if (first) {
-		first = 0;
-		gameBoard[randSpace] = ' ';
-		do {
-			randSpace = Math.floor(700 * Math.random());
-		} while  ( gameBoard[randSpace] == '#' || gameBoard[randSpace] == '\n' || gameBoard[randSpace] == HEAD || gameBoard[randSpace] == TAIL);
-	}
-	if (gameBoard[snakeHead + direction] == FRUIT) {
-		eat = 1;
-	}
-	if ( (gameBoard[snakeHead + direction] == '#') || (gameBoard[snakeHead + direction] == TAIL) ) {
-		gameOver();
-		gameEnd = 1;
-	}
-	else {
-		snakeHead += direction;
-	}
-
-	//copy snake body to game board
-	gameBoard[snakeBodyLast] = ' ';
-	for (i = 0; i < length; i++) {
-		gameBoard[snakeBody[i]] = TAIL;
-	}
-	gameBoard[snakeHead] = HEAD;
-
-	if ( eat == 1 ) {
-		length++;
-		score.innerHTML = length;
-		eat = 0;
-		do {
-			randSpace = Math.floor(700 * Math.random());
-		} while  ( gameBoard[randSpace] == '#' || gameBoard[randSpace] == '\n' || gameBoard[randSpace] == HEAD || gameBoard[randSpace] == TAIL);
-	}
-	gameBoard[randSpace] = FRUIT;
-	boardString = gameBoard.join('');
-	snake.innerHTML = boardString;
-}
+var doublehit = 0;
+var futureDirection;
 var start;
-setTimeout(turn, 1);
+var autoPlayBool = 0;
+function autoPlay() {
+	autoPlayBool = 1;
+	startGame();
+}
+function manualPlay() {
+	autoPlayBool = 0;
+	startGame();
+}
 function startGame() {
+	document.getElementById("snake").focus();
+	pause = 0;
 	delay_SF = 1 / (document.getElementById("slide").value);
 	delay = DELAY_BASE * delay_SF;
 	resetBoard();
-	clearInterval(start);
 	playGame = 1;
-	start = setInterval(turn, delay);
+	clearInterval(start);
+	start = setTimeout(turn, delay);
 }
 function gameOver() {
+	endGame = 1;
 	clearInterval(start);
-	snakeBodyLast = snakeHead; //prevents the last chain of the snake from disappearing
 	if (length > highscoreNum) {
 		highscoreNum = length;
+		highscore.innerHTML = highscoreNum;
 	}
-	highscore.innerHTML = highscoreNum;
 	gametext.style.visibility = "visible";
 }
 
 function resetBoard() {
 	direction = EAST;
-	gameEnd = 0;
+	futureDirection = 0;
+	endGame = 0;
 	first = 1;
 	for (i = 0; i <= length; i++) {
 		gameBoard[snakeBody[i]] = ' ';
 	}
+	snakeBody = [];
 	gameBoard[snakeHead] = ' ';
 	snakeHead = 208;
 	length = 0;
 	score.innerHTML = length;
 	gametext.style.visibility = "hidden";
 }
+function turn() {
+	doublehit = 0;
+	//shift body parts forward
+	for (i = length; i > 0; i--) {
+		snakeBody[i] = snakeBody[i - 1];
+	}
+	snakeBody[0] = snakeHead;
+	
+	if (first) {
+		first = 0;
+		gameBoard[fruitSpace] = ' ';
+		do {
+			fruitSpace = Math.floor(700 * Math.random());
+		} while  ( gameBoard[fruitSpace] != ' ');
+		gameBoard[fruitSpace] = FRUIT;
+	}
+	if ( (gameBoard[snakeHead + direction] == '#') || (gameBoard[snakeHead + direction] == TAIL) ) {
+		gameOver();
+	}
+	else {
+		snakeHead += direction;
+	}
+	if (gameBoard[snakeHead] == FRUIT) {
+		length++;
+		score.innerHTML = length;
+		eat = 0;
+		do {
+			fruitSpace = Math.floor(700 * Math.random());
+		} while  (gameBoard[fruitSpace] != ' ');
+		gameBoard[fruitSpace] = FRUIT;
+	}
+	snakeBodyLast = snakeBody[length];
 
-document.addEventListener('keydown', function(event) {
-    if(event.keyCode == 87 || event.keyCode == 38) {
-		if (direction != SOUTH) {
-			event.preventDefault();
-			direction = NORTH;
-			delay = DELAY_BASE * delay_SF * 1.5;
-		}
-    }
-    else if(event.keyCode == 65 || event.keyCode == 37) {
-		if (direction != EAST) {
-			event.preventDefault();
-			direction = WEST;
-			delay = DELAY_BASE * delay_SF;
-		}
-    }
-    else if(event.keyCode == 83 || event.keyCode == 40) {
-		if (direction != NORTH) {
-			event.preventDefault();
-			direction = SOUTH;
-			delay = DELAY_BASE * delay_SF * 1.5;
-		}
-    }
-    else if(event.keyCode == 68 || event.keyCode == 39) {
-		if (direction != WEST) {
-			event.preventDefault();
-			direction = EAST;
-			delay = DELAY_BASE * delay_SF;
-		}
-    }
-});
+	//copy snake body to game board
+	gameBoard[snakeBody[0]] = TAIL;
+	if (!endGame) {
+		gameBoard[snakeBodyLast] = ' ';
+	}
+	gameBoard[snakeHead] = HEAD;
 
+	boardString = gameBoard.join('');
+	snake.innerHTML = boardString;
+	if (futureDirection) {
+		direction = futureDirection;
+	}
+	if (autoPlayBool) {
+		autoAI();
+	}
+	if (playGame && !endGame) {
+		start = setTimeout(turn, delay);
+	}
+}
+setTimeout(turn, 0);
+
+function autoAI() {
+	fruitRow = Math.floor(fruitSpace/50);
+	snakeHeadRow = Math.floor(snakeHead/50);
+	fruitColumn = fruitSpace % 50;
+	snakeHeadColumn = snakeHead % 50;
+	//var a = performance.now();
+	direction = astar(fruitSpace);
+	//var b = performance.now();
+	//alert('It took ' + (b - a) + ' ms.'); //timing function for astar length
+	if (direction == 0) {
+		direction = astar(snakeBodyLast);
+			if (direction == 0) {
+				if ((gameBoard[snakeHead + NORTH] != TAIL) && (gameBoard[snakeHead + NORTH] != '#') && (direction != SOUTH)) {
+					direction = NORTH;
+				}
+				else if ((gameBoard[snakeHead + SOUTH] != TAIL) && (gameBoard[snakeHead + SOUTH] != '#') && (direction != NORTH)) {
+					direction = SOUTH;
+				}
+				else if ((gameBoard[snakeHead + EAST] != TAIL) && (gameBoard[snakeHead + EAST] != '#') && (direction != WEST)) {
+					direction = EAST;
+				}
+				else if ((gameBoard[snakeHead + WEST] != TAIL) && (gameBoard[snakeHead + WEST] != '#') && (direction != EAST)) {
+					direction = WEST;
+				}
+				else
+					direction = EAST; //will be Game Over
+			}
+	}
+}
+function astar(target) {
+	var cardinals = [NORTH, SOUTH, EAST, WEST];
+	var reverseDirections = [];
+	var neighbor;
+	var gScore, bestGScore;
+	var G = [];
+	var H = [];
+	var F = [];
+	var i, j;
+	var parent = [];
+	var openList = [];
+	var o = 0;
+	var current;
+	var currentIndex;
+	var closed = [];
+	var beenVisited = [];
+	var returnIn = [];
+	current = snakeHead; //initialize start node
+	G[current] = 0;
+	openList[0] = current;
+	o++;
+	F[current] = 0;
+	while (openList.length > 0) {
+		F[current] = F[openList[0]];
+		for (i = 0; i < o; i++) {
+			if (F[openList[i]] <= F[current]) {
+				current = openList[i];
+				currentIndex = i;
+			}
+		}
+		current = openList[currentIndex];
+		if (current == target) {
+			i = 0;
+			while (parent[current]) {
+				reverseDirections[i++] = current - parent[current];
+				current = parent[current];
+			}
+			return reverseDirections[i-1];
+		}
+		closed[current] = 1;
+		openList.splice(currentIndex, 1);
+		o--;
+		if ((o > 750) || (o < 0)) {
+			alert("Program has wizzed out, yo.  It was unable to find a path and started going crazy!");
+			break;
+		}
+		for (j = 0; j < 4; j++) {
+			neighbor = current + cardinals[j];
+			if (closed[neighbor] == 1) {
+				continue;
+			}
+			else if ((gameBoard[neighbor] == TAIL) || (gameBoard[neighbor] == '#')) {
+				closed[neighbor] = 1;
+			}
+			else {
+				gScore = G[current] + weight(neighbor);
+				bestGScore = 0;
+				if (beenVisited[neighbor] != 1) {
+				    beenVisited[neighbor] = 1;
+					bestGScore = 1;
+					H[neighbor] = Math.abs(Math.floor(target/50) - Math.floor(neighbor/50)) + Math.abs(Math.floor(target%50) - Math.floor(neighbor % 50));
+					openList.push(neighbor);
+					o++;
+				}
+				else if (gScore < G[neighbor]) {
+					bestGScore = 1;
+				}
+				if (bestGScore) {
+					parent[neighbor] = current;
+					G[neighbor] = gScore;
+					F[neighbor] = G[neighbor] + H[neighbor];
+				}
+			}
+		}
+	}
+	return 0;
+}
+
+document.addEventListener('keydown', keyListen);
+document.addEventListener('keyup', spaceboardPress);
+function spaceboardPress(event) {
+	event.preventDefault();
+}
+function weight(space) {
+	//if there is a path to the fruit
+	if (direction != 0) {
+		//weights the map as if it is bowl shaped
+		//the two formulas are very similar, but the first one causes the snake
+		//to prefer a zig-zag motion of travel, so the second one is better.
+		//return ((Math.abs(7 - Math.floor(space/50))) + (Math.abs(25 - (space % 50))))/32 + 1;
+		return ((Math.abs((space % 50) - 25)) / 23) + ((Math.abs(Math.floor(space / 50) - 7)) / 6) + 1;
+	}
+	else 
+		return 1;
+}
+var pause = 0;
+function keyListen(event) {
+	//if spacebar press
+	if (event.keyCode == 32) {
+		event.preventDefault(); //prevents page scroll down
+		if ((playGame == 0) && (pause == 0)) {
+			pause = 0;
+			startGame();
+		}
+		else if ((playGame == 1)  && (pause == 0) && (endGame == 0)){
+			clearInterval(start);
+			pause = 1;
+		}
+		else if (pause == 1) {
+			pause = 0;
+			delay_SF = 1 / (document.getElementById("slide").value);
+			delay = DELAY_BASE * delay_SF;
+			playGame = 1;
+			clearInterval(start);
+			start = setTimeout(turn, delay);
+		}
+		else if ((endGame == 1)) {
+			pause = 0;
+			resetBoard();
+			startGame();
+		}
+	}
+	if ((autoPlayBool == 0) && (pause == 0)) {
+		//if W or up arrow press
+		if(event.keyCode == 87 || event.keyCode == 38) {
+				event.preventDefault();
+			if (direction != SOUTH) {
+				if ( (doublehit + 1) == 2 ) {
+					futureDirection = NORTH;
+				}
+				else {
+					futureDirection = 0;
+					doublehit++;
+					direction = NORTH;
+				}
+				delay = DELAY_BASE * delay_SF * vertical_SF;
+			}
+		}
+		//if A or left arrow press
+		else if(event.keyCode == 65 || event.keyCode == 37) {
+			event.preventDefault();
+			if (direction != EAST) {
+				if ( (doublehit + 1) == 2 ) {
+					futureDirection = WEST;
+				}
+				else {
+					futureDirection = 0;
+					doublehit++;
+					direction = WEST;
+				}
+				delay = DELAY_BASE * delay_SF;
+			}
+		}
+		//if S or down arrow press
+		else if(event.keyCode == 83 || event.keyCode == 40) {
+			event.preventDefault();
+			if (direction != NORTH) {
+				if ( (doublehit + 1) == 2 ) {
+					futureDirection = SOUTH;
+				}
+				else {
+					futureDirection = 0;
+					doublehit++;
+					direction = SOUTH;
+				}
+				delay = DELAY_BASE * delay_SF * vertical_SF;
+			}
+		}
+		//if D or right arrow press
+		else if(event.keyCode == 68 || event.keyCode == 39) {
+			event.preventDefault();
+			if (direction != WEST) {
+				if ( (doublehit + 1) == 2 ) {
+					futureDirection = EAST;
+				}
+				else {
+					futureDirection = 0;
+					doublehit++;
+					direction = EAST;
+				}
+				delay = DELAY_BASE * delay_SF;
+			}
+		}
+	}
+}
 </script>
-
 </body>
 </html>
 
